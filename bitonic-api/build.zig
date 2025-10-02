@@ -24,4 +24,16 @@ pub fn build(b: *std.Build) void {
     exe.linkSystemLibrary("c");
 
     b.installArtifact(exe);
+
+    // Add test step
+    const bitonic_tests = b.addTest(.{
+        .root_source_file = b.path("src/bitonic_test.zig"),
+        .target = target,
+        .optimize = optimize,
+    });
+
+    const run_bitonic_tests = b.addRunArtifact(bitonic_tests);
+
+    const test_step = b.step("test", "Run unit tests");
+    test_step.dependOn(&run_bitonic_tests.step);
 }
