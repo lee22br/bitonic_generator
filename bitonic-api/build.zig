@@ -26,10 +26,15 @@ pub fn build(b: *std.Build) void {
     b.installArtifact(exe);
 
     // Add test step
-    const bitonic_tests = b.addTest(.{
+    const test_module = b.createModule(.{
         .root_source_file = b.path("src/bitonic_test.zig"),
         .target = target,
         .optimize = optimize,
+    });
+
+    const bitonic_tests = b.addTest(.{
+        .name = "bitonic-tests",
+        .root_module = test_module,
     });
 
     const run_bitonic_tests = b.addRunArtifact(bitonic_tests);
