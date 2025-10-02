@@ -139,6 +139,32 @@ bitonic-api/
    zig build run
    ```
 
+## 🧪 Testing
+
+The project includes unit tests for the bitonic sequence generation function.
+
+#### Local Testing
+```bash
+# Run tests locally (requires Zig installation)
+zig build test
+```
+
+### Test Coverage
+
+The test suite includes:
+- **Specific case validation**: Tests the exact output for `length=7, start=2, end=5`
+- **Expected output**: `[2, 3, 4, 5, 4, 3, 2]`
+- **Sequence properties**: Validates bitonic sequence characteristics
+- **Memory management**: Ensures proper allocation/deallocation
+
+### Example Test Output
+```
+=== Running bitonic test ===
+Generated sequence: 2 3 4 5 4 3 2 
+Expected sequence:  2 3 4 5 4 3 2 
+Test PASSED!
+```
+
 ### Testing the API
 
 ```bash
