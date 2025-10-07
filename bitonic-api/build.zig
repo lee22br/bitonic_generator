@@ -8,6 +8,7 @@ pub fn build(b: *std.Build) void {
     const optimize = b.standardOptimizeOption(.{});
 
     const zap_dep = b.dependency("zap", .{});
+    const okredis_dep = b.dependency("okredis", .{});
 
     const exe_mod = b.addModule(ex_name, .{
         .root_source_file = b.path("src/main.zig"),
@@ -21,6 +22,7 @@ pub fn build(b: *std.Build) void {
     });
 
     exe.root_module.addImport("zap", zap_dep.module("zap"));
+    exe.root_module.addImport("okredis", okredis_dep.module("okredis"));
     exe.linkSystemLibrary("c");
 
     b.installArtifact(exe);
