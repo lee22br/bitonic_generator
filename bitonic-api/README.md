@@ -11,35 +11,25 @@ A fast and lightweight HTTP API built in Zig that generates bitonic sequences wi
 
 ## 📋 Requirements
 
-- **Zig**: `0.16.0-dev.452+1f7ee99b3`
+- **Zig**: `0.15.1`
 - **Dependencies**: 
   - [zap](https://github.com/zigzap/zap) `v0.11.0` - HTTP server framework
+  - [okredis](https://github.com/kristoff-it/zig-okredis) - Redis client for zig application
 - **Docker** (optional but recommended for easy deployment)
 
 ## 🏗️ Building and Running
 
-### Option 1: Docker (Recommended)
+### Using docker + zig
 
 ```bash
-# Build and run with Docker Compose
-docker-compose up --build
-
-# Or build and run manually
-docker build -t bitonic-api .
-docker run -p 8080:8080 bitonic-api
-```
-
-### Option 2: Local Build
-
-```bash
-# Install dependencies
-zig fetch --save "git+https://github.com/zigzap/zap#v0.11.0"
+#Start redis container
+docker-compose up
 
 # Build the project
 zig build
 
 # Run the application
-zig build run
+./zig-out/bin/bitonic-api
 ```
 
 ## 🔌 API Reference
