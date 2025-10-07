@@ -16,7 +16,7 @@ pub fn main() !void {
         std.debug.print("Connecting to redis service...\n", .{});
         
         // Use getAddressList as primary method (works better in Docker)
-        var address_list = std.net.getAddressList(std.heap.page_allocator, "redis", 6379) catch |err| {
+        var address_list = std.net.getAddressList(std.heap.page_allocator, "localhost", 6379) catch |err| {
             std.debug.print("Could not resolve redis service: {}\n", .{err});
             break :blk null;
         };
