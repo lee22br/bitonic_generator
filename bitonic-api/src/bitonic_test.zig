@@ -32,3 +32,40 @@ test "bitonicArray specific case: length 7, start 2, end 5" {
 
     std.debug.print("Test PASSED!\n", .{});
 }
+
+test "bitonicArray exception case: length 2" {
+    const allocator = testing.allocator;
+
+    std.debug.print("\n=== Running bitonic test length <= 2 should throw exception ===\n", .{});
+
+    _ = bitonic.bitonicArray(allocator, 2, 2, 5) catch |e| {
+        try testing.expect(e == error.InvalidInput);
+        std.debug.print("InvalidInput error for length 2. Test PASSED!\n", .{});
+    };
+
+    _ = bitonic.bitonicArray(allocator, 1, 2, 5) catch |e| {
+        try testing.expect(e == error.InvalidInput);
+        std.debug.print("InvalidInput error for length 1. Test PASSED!\n", .{});
+    };
+
+    _ = bitonic.bitonicArray(allocator, 0, 2, 5) catch |e| {
+        try testing.expect(e == error.InvalidInput);
+        std.debug.print("InvalidInput error for length 0. Test PASSED!\n", .{});
+    };
+
+    return;
+}
+
+test "bitonicArray exception case: length greater than possible" {
+    const allocator = testing.allocator;
+
+    std.debug.print("\n=== Running bitonic test length > possible should throw exception ===\n", .{});
+
+    // length > (max - min) * 2 + 1
+    _ = bitonic.bitonicArray(allocator, 10, 2, 5) catch |e| {
+        try testing.expect(e == error.InvalidInput);
+        std.debug.print("InvalidInput error for length 10 with range [2,5]. Test PASSED!\n", .{});
+    };
+
+    return;
+}
