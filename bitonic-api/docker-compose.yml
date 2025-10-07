@@ -9,36 +9,5 @@ services:
     networks:
       - bitonic-network
 
-  bitonic-api:
-    build: .
-    ports:
-      - "8080:8080"
-    depends_on:
-      - redis
-    environment:
-      - ZIG_CACHE_DIR=/tmp/zig-cache
-      - ZIG_GLOBAL_CACHE_DIR=/tmp/zig-global-cache
-      - REDIS_HOST=redis
-      - REDIS_PORT=6379
-    networks:
-      - bitonic-network
-
-  test:
-    build: .
-    command: sh -c "echo 'Starting Zig tests...' && zig build test --verbose && echo 'Tests completed!'"
-    depends_on:
-      - redis
-    environment:
-      - ZIG_CACHE_DIR=/tmp/zig-cache
-      - ZIG_GLOBAL_CACHE_DIR=/tmp/zig-global-cache
-      - REDIS_HOST=redis
-      - REDIS_PORT=6379
-    networks:
-      - bitonic-network
-
-networks:
-  bitonic-network:
-    driver: bridge
-
 volumes:
   redis_data:
