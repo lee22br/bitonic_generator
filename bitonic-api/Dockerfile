@@ -28,9 +28,11 @@ ENV ZIG_GLOBAL_CACHE_DIR=/tmp/zig-global-cache
 
 # Copy build configuration
 COPY build.zig .
+COPY build.zig.zon .
 
-# Install zap dependency (this will create build.zig.zon)
+# Install dependencies
 RUN zig fetch --save "git+https://github.com/zigzap/zap#v0.11.0"
+RUN zig fetch --save "git+https://github.com/kristoff-it/zig-okredis"
 
 # Copy source code
 COPY src/ ./src/
