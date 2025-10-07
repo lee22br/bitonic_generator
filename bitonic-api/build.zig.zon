@@ -1,0 +1,23 @@
+.{
+    .fingerprint = 0x183eb3ff33d8d3a,
+    .name = .bitonic_api,
+    .version = "0.1.0",
+    .minimum_zig_version = "0.16.0",
+
+    .dependencies = .{
+        .zap = .{
+            .url = "git+https://github.com/zigzap/zap#v0.11.0",
+            .hash = "1220d6e0c9b68dd19e19e9100e73b2d5ba72e1ca1bd90adc7fdf3d75f7b7c7b0",
+        },
+        .okredis = .{
+            .url = "git+https://github.com/kristoff-it/zig-okredis",
+            .hash = "1220f16e15acd5e98bee6c5ed1c14a86f5c0f0a5a7e4c9b7f0d8f3e3a1b2c3d4",
+        },
+    },
+
+    .paths = .{
+        "build.zig",
+        "build.zig.zon",
+        "src",
+    },
+}
