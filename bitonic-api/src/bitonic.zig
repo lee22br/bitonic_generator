@@ -5,7 +5,7 @@ pub fn bitonicArray(allocator: std.mem.Allocator, n: usize, l: i32, r: i32) ![]i
     var deque = try std.ArrayList(i32).initCapacity(allocator, n);
     defer deque.deinit(allocator);
 
-    if (n > max_possible) {
+    if (n > max_possible or n <= 2) {
         return error.InvalidInput;
     }
 
