@@ -1,0 +1,19 @@
+meta {
+  name: Corner Case 1
+  type: http
+  seq: 1
+}
+
+post {
+  url: http://localhost:8080/bitonic
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "length": 5,
+    "start": 1,
+    "end": 5
+  }
+}
