@@ -21,7 +21,10 @@ const testCases = [
   { length: 7, start: 2, end: 5 },   // Original Bruno example
   { length: 5, start: 1, end: 5 },   
   { length: 10, start: 0, end: 10 }, 
-  { length: 3, start: 2, end: 4 },   
+  { length: 3, start: 2, end: 4 },
+  { length: 4, start: 4, end: 1 },
+  { length: 5, start: 1, end: 6 },
+  { length: 29, start: 1, end: 15 }
 ];
 
 export default function () {

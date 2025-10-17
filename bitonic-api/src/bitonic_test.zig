@@ -69,3 +69,65 @@ test "bitonicArray exception case: length greater than possible" {
 
     return;
 }
+
+test "bitonicArray specific case: length 29, start 1, end 15" {
+    const allocator = testing.allocator;
+
+    std.debug.print("\n=== Running bitonic test ===\n", .{});
+
+    const result = try bitonic.bitonicArray(allocator, 29, 1, 15);
+    defer allocator.free(result);
+
+    std.debug.print("Generated sequence: ", .{});
+    for (result) |val| {
+        std.debug.print("{} ", .{val});
+    }
+    std.debug.print("\n", .{});
+
+    const expected = [_]i32{ 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1 };
+
+    std.debug.print("Expected sequence:  ", .{});
+    for (expected) |val| {
+        std.debug.print("{} ", .{val});
+    }
+    std.debug.print("\n", .{});
+
+    try testing.expect(result.len == expected.len);
+
+    for (result, 0..) |val, i| {
+        try testing.expect(val == expected[i]);
+    }
+
+    std.debug.print("Test PASSED!\n", .{});
+}
+
+test "bitonicArray corner case: length 5, start 1, end 5" {
+    const allocator = testing.allocator;
+
+    std.debug.print("\n=== Running bitonic test ===\n", .{});
+
+    const result = try bitonic.bitonicArray(allocator, 5, 0, 3);
+    defer allocator.free(result);
+
+    std.debug.print("Generated sequence: ", .{});
+    for (result) |val| {
+        std.debug.print("{} ", .{val});
+    }
+    std.debug.print("\n", .{});
+
+    const expected = [_]i32{ 2,3,2,1,0 };
+
+    std.debug.print("Expected sequence:  ", .{});
+    for (expected) |val| {
+        std.debug.print("{} ", .{val});
+    }
+    std.debug.print("\n", .{});
+
+    try testing.expect(result.len == expected.len);
+
+    for (result, 0..) |val, i| {
+        try testing.expect(val == expected[i]);
+    }
+
+    std.debug.print("Test PASSED!\n", .{});
+}
