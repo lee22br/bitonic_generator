@@ -33,10 +33,12 @@ pub fn build(b: *std.Build) void {
         .target = target,
         .optimize = optimize,
     });
+    test_module.addImport("okredis", okredis_dep.module("okredis"));
 
     const bitonic_tests = b.addTest(.{
         .name = "bitonic-tests",
         .root_module = test_module,
+
     });
 
     const run_bitonic_tests = b.addRunArtifact(bitonic_tests);
@@ -44,3 +46,4 @@ pub fn build(b: *std.Build) void {
     const test_step = b.step("test", "Run unit tests");
     test_step.dependOn(&run_bitonic_tests.step);
 }
+
